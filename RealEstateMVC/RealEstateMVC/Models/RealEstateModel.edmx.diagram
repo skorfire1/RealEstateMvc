@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="98d53655685547bf8c75d60f21a3eaaa" Name="Diagram1">
+        <EntityTypeShape EntityType="RealEstateModel.mail" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Property" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.PropertyImage" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Representer" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.RepresenterImage" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.State" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <AssociationConnector Association="RealEstateModel.FK_Property_State" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_PropertyImage_Property" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_RepresenterImage_Representer" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RealEstateModel.sysdiagram" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="RealEstateModel.ReferencesImage" Width="1.5" PointX="5.375" PointY="7.75" />
+        <EntityTypeShape EntityType="RealEstateModel.User" Width="1.5" PointX="7.375" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RealEstateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="mail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="surnmae" Type="nvarchar" MaxLength="50" />
+          <Property Name="text" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="explanation" Type="text" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="district" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="m2" Type="int" Nullable="false" />
+          <Property Name="floor" Type="tinyint" Nullable="false" />
+          <Property Name="numberofrooms" Type="tinyint" Nullable="false" />
+          <Property Name="adress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="stateId" Type="int" Nullable="false" />
+          <Property Name="price" Type="int" />
+        </EntityType>
+        <EntityType Name="PropertyImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="propertyId" Type="int" Nullable="false" />
+          <Property Name="image" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ReferencesImages">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="image" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Representer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RepresenterImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="representerId" Type="int" Nullable="false" />
+          <Property Name="image" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="role" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Property_State">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Property" Type="Self.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="stateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyImage_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PropertyImage" Type="Self.PropertyImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PropertyImage">
+              <PropertyRef Name="propertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RepresenterImage_Representer">
+          <End Role="Representer" Type="Self.Representer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RepresenterImage" Type="Self.RepresenterImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Representer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RepresenterImage">
+              <PropertyRef Name="representerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RealEstateModelStoreContainer">
+          <EntitySet Name="mail" EntityType="Self.mail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyImage" EntityType="Self.PropertyImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReferencesImages" EntityType="Self.ReferencesImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Representer" EntityType="Self.Representer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RepresenterImage" EntityType="Self.RepresenterImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Property_State" Association="Self.FK_Property_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="Property" EntitySet="Property" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyImage_Property" Association="Self.FK_PropertyImage_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="PropertyImage" EntitySet="PropertyImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RepresenterImage_Representer" Association="Self.FK_RepresenterImage_Representer">
+            <End Role="Representer" EntitySet="Representer" />
+            <End Role="RepresenterImage" EntitySet="RepresenterImage" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RealEstateModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="mail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="surnmae" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="district" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="m2" Type="Int32" Nullable="false" />
+          <Property Name="floor" Type="Byte" Nullable="false" />
+          <Property Name="numberofrooms" Type="Byte" Nullable="false" />
+          <Property Name="adress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="stateId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="State" Relationship="Self.FK_Property_State" FromRole="Property" ToRole="State" />
+          <NavigationProperty Name="PropertyImages" Relationship="Self.FK_PropertyImage_Property" FromRole="Property" ToRole="PropertyImage" />
+          <Property Name="price" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PropertyImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="image" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="propertyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Property" Relationship="Self.FK_PropertyImage_Property" FromRole="PropertyImage" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="Representer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RepresenterImages" Relationship="Self.FK_RepresenterImage_Representer" FromRole="Representer" ToRole="RepresenterImage" />
+        </EntityType>
+        <EntityType Name="RepresenterImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="image" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="representerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Representer" Relationship="Self.FK_RepresenterImage_Representer" FromRole="RepresenterImage" ToRole="Representer" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Properties" Relationship="Self.FK_Property_State" FromRole="State" ToRole="Property" />
+        </EntityType>
+        <Association Name="FK_Property_State">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Property" Type="Self.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="stateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyImage_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="PropertyImage" Type="Self.PropertyImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PropertyImage">
+              <PropertyRef Name="propertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RepresenterImage_Representer">
+          <End Role="Representer" Type="Self.Representer" Multiplicity="1" />
+          <End Role="RepresenterImage" Type="Self.RepresenterImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Representer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RepresenterImage">
+              <PropertyRef Name="representerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RealEstateEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="mails" EntityType="Self.mail" />
+          <EntitySet Name="Properties" EntityType="Self.Property" />
+          <EntitySet Name="PropertyImages" EntityType="Self.PropertyImage" />
+          <EntitySet Name="Representers" EntityType="Self.Representer" />
+          <EntitySet Name="RepresenterImages" EntityType="Self.RepresenterImage" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <AssociationSet Name="FK_Property_State" Association="Self.FK_Property_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="Property" EntitySet="Properties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyImage_Property" Association="Self.FK_PropertyImage_Property">
+            <End Role="Property" EntitySet="Properties" />
+            <End Role="PropertyImage" EntitySet="PropertyImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RepresenterImage_Representer" Association="Self.FK_RepresenterImage_Representer">
+            <End Role="Representer" EntitySet="Representers" />
+            <End Role="RepresenterImage" EntitySet="RepresenterImages" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="RealEstateModel.sysdiagram" />
+          <EntitySet Name="ReferencesImages" EntityType="RealEstateModel.ReferencesImage" />
+          <EntitySet Name="Users" EntityType="RealEstateModel.User" />
+        </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ReferencesImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="image" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="role" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RealEstateModelStoreContainer" CdmEntityContainer="RealEstateEntities">
+          <EntitySetMapping Name="mails">
+            <EntityTypeMapping TypeName="RealEstateModel.mail">
+              <MappingFragment StoreEntitySet="mail">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surnmae" ColumnName="surnmae" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Properties">
+            <EntityTypeMapping TypeName="RealEstateModel.Property">
+              <MappingFragment StoreEntitySet="Property">
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="explanation" ColumnName="explanation" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="m2" ColumnName="m2" />
+                <ScalarProperty Name="floor" ColumnName="floor" />
+                <ScalarProperty Name="numberofrooms" ColumnName="numberofrooms" />
+                <ScalarProperty Name="adress" ColumnName="adress" />
+                <ScalarProperty Name="stateId" ColumnName="stateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyImages">
+            <EntityTypeMapping TypeName="RealEstateModel.PropertyImage">
+              <MappingFragment StoreEntitySet="PropertyImage">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="propertyId" ColumnName="propertyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Representers">
+            <EntityTypeMapping TypeName="RealEstateModel.Representer">
+              <MappingFragment StoreEntitySet="Representer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RepresenterImages">
+            <EntityTypeMapping TypeName="RealEstateModel.RepresenterImage">
+              <MappingFragment StoreEntitySet="RepresenterImage">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="representerId" ColumnName="representerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="RealEstateModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RealEstateModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReferencesImages">
+            <EntityTypeMapping TypeName="RealEstateModel.ReferencesImage">
+              <MappingFragment StoreEntitySet="ReferencesImages">
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="RealEstateModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

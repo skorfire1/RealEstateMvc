@@ -1,0 +1,36 @@
+﻿@model List<RealEstateMVC.Models.Representer>
+@{
+    ViewBag.Title = "ListAgency";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<a class="btn btn-success" href="/Admin/CreateNewAgency">New Agency</a>
+<h2> User List</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Phone</th>
+            <th>E-mail</th>
+            <th>Update</th>
+            <th>Delete</th>
+            <th>Add Picture</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var representer in Model)
+        {
+        <tr>
+            <th>@representer.name</th>
+            <th>@representer.surname</th>
+            <th>@representer.phone</th>
+            <th>@representer.email</th>
+            <th><a class="btn btn-primary" href="/Admin/UpdateAgency/@representer.id">Update</a></th>
+            <th><a class="btn btn-primary" href="/Admin/DeleteAgency/@representer.id">Delete</a></th>
+            <th><a class="btn btn-primary" href="/Admin/AddPictureAgency/@representer.id">Add Picture</a></th>
+        </tr>
+        }
+    </tbody>
+</table>
+

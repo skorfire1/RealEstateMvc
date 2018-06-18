@@ -1,0 +1,75 @@
+﻿
+@model List<RealEstateMVC.Models.Property>
+@{
+    ViewBag.Title = "ForRent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var i = 1;
+}
+
+@foreach (var property in Model)
+{
+    
+
+    if (i%3==0)
+    {
+        
+        <article class="one_third lastbox">
+            <figure>
+                @if (@property.PropertyImages.FirstOrDefault(x => x.propertyId == property.id) == null)
+                {
+                        <img src = "/Content/images/noproperty.gif"width="290" height="180" alt="">
+                }
+                else
+                {
+                        <img src="@property.PropertyImages.FirstOrDefault(x => x.propertyId == property.id).image" width="290" height="180" alt="">
+                }
+                
+                <figcaption>
+                    <h2>@property.city - @property.district</h2>
+                    <p>@property.explanation</p>
+
+                    <footer class="more">
+                        @using (Html.BeginForm("Details", "Home", FormMethod.Post))
+                        {
+
+                            @Html.HiddenFor(m => property.id)
+                            ;
+                            <button type="submit" class="btn-info">Read More</button>
+                        }
+                    </footer>
+                </figcaption>
+            </figure>
+        </article>
+    }
+    else
+    {
+        <article class="one_third">
+            <figure>
+                @if (@property.PropertyImages.FirstOrDefault(x => x.propertyId == property.id) == null)
+                {
+                    <img src = "/Content/images/noproperty.gif"width="290" height="180" alt="">
+                }
+                else
+                {
+                    <img src="@property.PropertyImages.FirstOrDefault(x => x.propertyId == property.id).image" width="290" height="180" alt="">
+                }
+                <figcaption>
+                    <h2>@property.city - @property.district</h2>
+                    <p>@property.explanation</p>
+                    <footer class="more">
+                        @using (Html.BeginForm("Details", "Home", FormMethod.Post))
+                        {
+
+                            @Html.HiddenFor(m => property.id);
+                            <button type="submit" class="btn-info">Read More</button>
+                        }
+                    </footer>
+                </figcaption>
+            </figure>
+        </article>
+    }
+
+    i++;
+}
+
+    

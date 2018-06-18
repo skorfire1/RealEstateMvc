@@ -1,0 +1,138 @@
+﻿@using RealEstateMVC.Models
+@model List<RealEstateMVC.Models.Property>
+<head>
+  
+    <link href="~/Content/assets/slider.css" rel="stylesheet" />
+</head>
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string state = "";
+}
+
+@foreach (var property in Model)
+{
+    <section id="slider" style="margin-left: 30px; margin-right: auto; display: block;">
+
+        @if (@property.PropertyImages.FirstOrDefault(x => x.propertyId == property.id) == null)
+        {
+            <img src = "/Content/images/noproperty.gif">
+        }
+        else
+        {
+            foreach (var image in @property.PropertyImages.Where(x => x.propertyId == property.id))
+            {
+                <img class="mySlides" src="@image.image"  alt="" />
+            }
+
+            <button style="top:600px;left:310px" class="w3-button w3-black w3-display-position" onclick="plusDivs(-1)">&#10094;</button>
+            <button style="top:600px; left: 1235px;" class="w3-button w3-black w3-display-position" onclick="plusDivs(1)">&#10095;</button>
+        }
+    </section>
+    <div style="margin-left: 5px; border-color: black; color: grey;font-family: Arial, Helvetica, sans-serif;">
+        <table style="width: 95%; color: black; padding: 20px; font-size: 18px; " class="form-wrapper" >
+
+            <tr >
+                <th >
+
+                    <img src="~/Content/images/location.png" height="42" width="42" />
+                </th>
+                <th colspan="4">
+                    @property.city -   @property.district
+                </th>
+            </tr>
+
+            <tr>
+                <th>
+
+                    <img src="~/Content/images/adress.png" height="42" width="42" />
+                </th>
+                <th colspan="4">
+                    @property.adress
+                </th>
+            </tr>
+
+            <tr>
+                <th>
+
+                    <img src="~/Content/images/info.png" height="42" width="42" />
+                </th>
+                <th colspan="4">
+                    @property.explanation
+                </th>
+            </tr>
+            <tr>
+                <th>
+
+                    <img src="~/Content/images/floor.png" height="42" width="42" />
+                </th>
+                <th>
+                    Floor @property.floor
+                </th>
+            
+                <th>
+
+                    <img src="~/Content/images/numberofroom.png" height="42" width="42" />
+                </th>
+                <th>
+                    @property.numberofrooms Rooms
+                </th>
+            </tr>
+            <tr>
+                <th>
+
+                    <img src="~/Content/images/money.png" height="42" width="42" />
+                </th>
+                <th>
+                    @property.price TL
+                </th>
+            
+                <th>
+                    <img src="~/Content/images/status.png" height="42" width="42" />
+                </th>
+                <th>
+                    @if (property.stateId == 1)
+                    {
+                        state = "ForRent";
+                    }
+                    else
+                    {
+                        state = "ForSale";
+                    }
+                    @state
+                </th>
+            </tr>
+            <tr>
+                <th>
+
+                    <img src="~/Content/images/m2.png" height="42" width="42" />
+                </th>
+                <th colspan="4">
+                    @property.m2 m2
+                </th>
+            </tr>
+
+
+        </table>
+    </div>
+}
+<script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {slideIndex = 1}    
+        if (n < 1) {slideIndex = x.length}
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";  
+        }
+        x[slideIndex-1].style.display = "block";  
+    }
+</script>
+

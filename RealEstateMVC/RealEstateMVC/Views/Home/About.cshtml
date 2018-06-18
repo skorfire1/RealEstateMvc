@@ -1,0 +1,33 @@
+﻿@using RealEstateMVC.Models
+@model List<RealEstateMVC.Models.ReferencesImage>
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+    int i = 1;
+}
+
+    @foreach (var property in Model)
+    {
+
+        if (i % 3 == 0)
+        {
+            <article class="one_third lastbox">
+                <figure>
+                    <img src="@property.image" width="290" height="180" alt="">
+
+                </figure>
+            </article>
+        }
+        else
+        {
+            <article class="one_third">
+                <figure>
+                    <img src="@property.image" width="290" height="180" alt="">
+
+                </figure>
+            </article>
+        }
+
+        i++;
+    }
+

@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <title>Superheroes</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/Content/css/layout.css" type="text/css">
+    <link rel="stylesheet" href="/Content/css/searchbar.css" type="text/css">
+
+</head>
+<body>
+    <div class="wrapper row1">
+        <header id="header" class="clear">
+            <div id="hgroup">
+
+                <img src="/Content/images/realestate.png" />
+                <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/23556-200.png" width="120" height="133" style="margin-left:250px" />
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/forsale">ForSale</a></li>
+                    <li><a href="/forrent">ForRent</a></li>
+                    <li><a href="/agencies">Agencies</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li class="last"><a href="/contact">Contact Us</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <!-- content -->
+    <div class="wrapper row2">
+
+
+
+        <div id="container" class="clear">
+            <!-- Slider -->
+
+            <section id="slider" style="margin-left:25px"><img src="/Content/images/ezgif.com-gif-maker.gif" alt=""></section>
+            <!-- main content -->
+            <!-- Services -->
+            <div style="float:right; width: 935px;">
+                <section class="form-wrapper">
+                   @RenderBody()
+                </section>
+            </div>
+            <div style="float: left;margin-left: -250px; margin-top: -400px;">
+                <form class="form-wrapper" action="/searchbar" style="float: left; font-size:15px">
+                    <table>
+                        <tr>
+                            <td>
+                                City
+                            </td>
+                        <tr>
+                            <td>
+                                <input type="text" id="search" name="city">
+                            </td>
+                        </tr>
+
+                        <td>
+                            District:
+                        </td>
+
+                        <tr>
+                            <td>
+                                <input type="text" id="search" name="district">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                M2:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" id="search" name="m2">
+                            <td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Number of Rooms:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" id="search" name="numberofrooms">
+                            <td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Floor:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" id="search" name="floor">
+                            <td>
+                        </tr>
+                        <tr>
+                            <td>
+                                State:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select name="stateId">
+                                    <option value="0">Choose</option>
+                                    <option value="2">For Sale</option>
+                                    <option value="1">For Rent</option>
+
+                                </select>
+                            <td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <input type="submit" value="Search" id="submit">
+                            </td>
+                        </tr>
+
+                    </table>
+                </form>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="wrapper row4">
+        <footer id="copyright" class="clear">
+            <p class="fl_left">Hiçbir hakkı saklı değildir.</p>
+            <p class="fl_right">Hasan&Öztürk Universe.</p>
+        </footer>
+    </div>
+</body>
+</html>

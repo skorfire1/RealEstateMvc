@@ -1,0 +1,45 @@
+﻿@using RealEstateMVC.Models
+@model List<Property>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<a class="btn btn-success" href="/Admin/CreateNewProperty">New Property</a>
+<h2> Properties List</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Explanation</th>
+            <th>City</th>
+            <th>District</th>
+            <th>M2</th>
+            <th>Floor</th>
+            <th>Number of rooms</th>
+            <th>Adress</th>
+            <th>StateId</th>
+            <th>Price</th>
+            <th>Update</th>
+            <th>Delete</th>
+            <th>Add Picture</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var property in Model)
+        {
+        <tr>
+            <th>@property.explanation</th>
+            <th>@property.city</th>
+            <th>@property.district</th>
+            <th>@property.m2</th>
+            <th>@property.floor</th>
+            <th>@property.numberofrooms</th>
+            <th>@property.adress</th>
+            <th>@property.stateId</th>
+            <th>@property.price</th>
+            <th><a class="btn btn-primary" href="/Admin/UpdateProperties/@property.id">Update</a></th>
+            <th><a class="btn btn-primary" href="/Admin/DeleteProperties/@property.id">Delete</a></th>
+            <th><a class="btn btn-primary" href="/Admin/AddPictureProperty/@property.id">Add Picture</a></th>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,34 @@
+﻿@using RealEstateMVC.Models
+@model RealEstateMVC.Models.User
+@{
+    ViewBag.Title = "CreateNewUser";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using (Html.BeginForm("CreateNewUser", "Admin", FormMethod.Post))
+{
+    <div class="form-group">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>@Html.TextBoxFor(m => m.username, new { @class = "form-control" })</th>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <th> @Html.TextBoxFor(m => m.password, new { @class = "form-control" })</th>
+            </tr>
+            <tr>
+                <th>Role</th>
+
+                <th>@Html.TextBoxFor(m => m.role, new { @class = "form-control" })</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    @Html.HiddenFor(m=>m.id)
+    <button type="submit" class="btn btn-success">Save</button>
+}
+
+
+
+

@@ -1,0 +1,34 @@
+﻿@model List<RealEstateMVC.Models.User>
+
+@{
+    ViewBag.Title = "ListUsers";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<a class="btn btn-success" href="/Admin/CreateNewUser">New User</a>
+<h2> User List</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Role</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var property in Model)
+    {
+        <tr>
+            <th>@property.username</th>
+            <th>@property.password</th>
+            <th>@property.role</th>
+            
+            <th><a class="btn btn-primary" href="/Admin/UpdateUser/@property.id">Update</a></th>
+            <th><a class="btn btn-primary" href="/Admin/DeleteUser/@property.id">Delete</a></th>
+        </tr>
+    }
+    </tbody>
+</table>
+

@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout4.cshtml";
+}
+<section id="slider"><a href="#"><img src="/Content/images/callmemaybe.jpg" alt="" height="517" width="980"></a></section>
+<form class="form-wrapper" action="/contact" method="post" style="width: 970px;">
+    <table>
+        <tr>
+            <td>
+                Name:
+            </td>
+            <td>
+            <input type="text" id="search" name="name" >
+            <td>
+        </tr>
+        <tr>
+            <td>
+                Surname:
+            </td>
+            <td>
+                <input type="text" id="search" name="surnmae">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                E-mail:
+            </td>
+            <td>
+            <input type="text" id="search" name="email" required="">
+            </td>
+        </tr>    
+        <tr>
+            <td>
+                Message:
+            </td>
+            <td>
+                <textarea  rows="10" cols="70" name="text" style="border: 1px solid #CCC;
+                                      -webkit-box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
+                                      -moz-box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
+                                      box-shadow: 0 1px 1px #ddd inset, 0 1px 0 #FFF;
+                                      -webkit-border-radius: 3px;
+                                      -moz-border-radius: 3px;
+                                      border-radius: 3px;
+                                      color: #999;
+                                      float: left;
+                                      font: 16px Lucida Sans, Trebuchet MS, Tahoma, sans-serif;
+                                      
+                                      padding: 10px;" required="" ></textarea>
+            </td>
+        </tr>    
+        <tr>
+        <td>
+            </td>
+            <td style="float: right";>
+                <input type="submit" value="Send" id="submit">
+            </td>
+        </tr>
+
+    </table>
+</form> 
+

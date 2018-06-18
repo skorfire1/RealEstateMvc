@@ -1,0 +1,52 @@
+﻿@using RealEstateMVC.Models
+@model RealEstateMVC.Models.PropertyImage
+
+@{
+    ViewBag.Title = "AddPictureProperty";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+
+}
+@using (Html.BeginForm("AddPictureProperty", "Admin", FormMethod.Post))
+{
+    <div class="form-group">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>
+                        @Html.TextBoxFor(m => m.propertyId, new { @Value = Url.RequestContext.RouteData.Values["id"], @class = "form-control", @readonly = "radonly" })
+                    </th>
+                    <th>URL</th>
+                    <th>
+                        @Html.TextBoxFor(m => m.image, new { @class = "form-control", required = "required", id = "mySelect", onkeyup = "myFunction()" })
+                    </th>
+                </tr>
+
+            </thead>
+        </table>
+    </div>
+
+    <button type="submit" class="btn btn-success">Add</button>
+}
+<h2>Preview</h2>
+<div id="demo" style="margin-top: 20px;">
+    <img src="~/Content/images/default.png" width="250px" height="250px"/>
+</div>
+
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("mySelect").value;
+
+        if (x.indexOf(".jpg") <= 0) {
+            document.getElementById("demo").innerHTML = '<img src=' + '/Content/images/default.png' + ' width="250px" height="250px">';
+        }
+        else
+        {
+            document.getElementById("demo").innerHTML = '<img src="' + x + '" width="250px" height="250px">';
+        }
+        
+
+    }
+</script>

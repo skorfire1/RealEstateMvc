@@ -1,0 +1,50 @@
+﻿<head>
+
+    <link href="~/Content/assets/bootstrap.css" rel="stylesheet" />
+</head>
+@using RealEstateMVC.Models
+@model List<RealEstateMVC.Models.Representer>
+@{
+    ViewBag.Title = "Agencies";
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+                
+          
+
+<div class="container" style="margin-left: -200px; margin-top: 15px;">
+<div class="spacer agents">
+
+<div class="row">
+<div class="col-lg-8  col-lg-offset-2 col-sm-12">
+    @foreach (var representer in Model)
+    {
+        <table class="" style="width: 100%; margin-bottom: 20px; border-color: pink; " >
+            <tbody>
+            <tr>
+                <td rowspan="3">
+                    <img src="@representer.RepresenterImages.FirstOrDefault(x => x.representerId == representer.id).image" class="img-responsive" alt="agent name" width="200px;" height="200px;"/>
+                </td>
+                <td colspan="2" >
+                    <h4><b>@representer.name @representer.surname</b></h4>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+
+                    <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
+                </td>
+            </tr>
+            <tr>
+                <td><span class="glyphicon glyphicon-envelope"></span> <u>@representer.email</u></td>
+                <td><span class="glyphicon glyphicon-earphone"></span> @representer.phone</td>
+            </tr>
+            </tbody>
+        </table>
+    
+    }
+
+            </div>
+        </div>
+    </div>
+</div>

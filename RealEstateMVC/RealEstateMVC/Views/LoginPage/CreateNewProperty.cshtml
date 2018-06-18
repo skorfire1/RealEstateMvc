@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "CreateNewProperty";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<form>
+    <div class="form-group">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Explanation</th>
+                <th>City</th>
+                <th>District</th>
+                <th>M2</th>
+                <th>Floor</th>
+                <th>Number of rooms</th>
+                <th>Adress</th>
+                <th>StateId</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th><input type="text" name="explanation" class="form-control"/></th>
+                    <th><input type="text" name="city" class="form-control" /></th>
+                    <th><input type="text" name="district" class="form-control" /></th>
+                    <th><input type="text" name="m2" class="form-control" /></th>
+                    <th><input type="text" name="floor" class="form-control" /></th>
+                    <th><input type="text" name="numberofrooms" class="form-control" /></th>
+                    <th><input type="text" name="adress" class="form-control" /></th>
+                    <th><input type="text" name="stateId" class="form-control" /></th>
+                    <th><input type="text" name="price" class="form-control" /></th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button type="submit" class="btn btn-success"></button>
+</form>
+

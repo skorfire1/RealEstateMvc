@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <title>Superheroes</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/Content/css/layout.css" type="text/css">
+    <link rel="stylesheet" href="/Content/css/searchbar.css" type="text/css">
+
+
+</head>
+<body>
+<div class="wrapper row1">
+    <header id="header" class="clear">
+        <div id="hgroup">
+
+            <img src="~/Content/images/realestate.png" />
+            <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/23556-200.png" width="120" height="133" style="margin-left:250px" />
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/forsale">ForSale</a></li>
+                <li><a href="/forrent">ForRent</a></li>
+                <li><a href="/agencies">Agencies</a></li>
+                <li><a href="/about">About</a></li>
+                <li class="last"><a href="/contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+</div>
+<!-- content -->
+<div class="wrapper row2">
+    <div id="container" class="clear">
+        <!-- Slider -->
+            
+        <!-- main content -->
+        <div id="homepage">
+            <!-- Services -->
+            
+                <section id="services" class="clear1" >
+                    @RenderBody()
+                   
+                </section>
+            
+        </div>
+
+    </div>
+</div>
+<div class="wrapper row4">
+    <footer id="copyright" class="clear">
+        <p class="fl_left">Hiçbir hakkı saklı değildir.</p>
+        <p class="fl_right">Hasan&Öztürk Universe.</p>
+    </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿@using RealEstateMVC.Models
+@model RealEstateMVC.Models.Property
+@{
+    ViewBag.Title = "CreateNewProperty";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("CreateNewProperty", "Admin", FormMethod.Post))
+{
+    <div class="form-group">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>District</th>
+                    <th>@Html.TextBoxFor(m=>m.district,new {@class="form-control"})</th>
+                </tr>
+                <tr>
+                    <th>City</th>
+                    <th> @Html.TextBoxFor(m => m.city, new { @class = "form-control" })</th>
+                </tr>
+            <tr>
+                <th>M2</th>
+
+                <th>@Html.TextBoxFor(m => m.m2, new { @class = "form-control" })</th>
+            </tr>
+            <tr>
+                <th>Floor</th>
+
+                <th>@Html.TextBoxFor(m => m.floor, new { @class = "form-control" })</th>
+            </tr>
+            <tr>
+                <th>Number of rooms</th>
+
+                <th>@Html.TextBoxFor(m => m.numberofrooms, new { @class = "form-control" })</th>
+            </tr>
+            <tr>
+                <th>Price</th>
+
+                <th>@Html.TextBoxFor(m => m.price, new { @class = "form-control" })</th>
+            </tr>
+            <tr>
+                <th>StateID</th>
+
+                <th>@Html.TextBoxFor(m => m.stateId, new { @class = "form-control" })</th>
+            </tr>
+            <tr>
+                <th>Adress</th>
+
+                <th>@Html.TextBoxFor(m => m.adress, new { @class = "form-control" })</th>
+            </tr>
+            <tr>
+                <th>Explanation</th>
+
+                <th>@Html.TextBoxFor(m => m.explanation, new { @class = "form-control" })</th>
+            </tr>
+            
+            </thead>
+        </table>
+    </div>
+    @Html.HiddenFor(m => m.id)
+    <button type="submit" class="btn btn-success">Save</button>
+}
+

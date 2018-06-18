@@ -1,0 +1,36 @@
+﻿@using RealEstateMVC.Models
+@model RealEstateMVC.Models.Representer
+@{
+    ViewBag.Title = "CreateNewAgency";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("CreateNewAgency", "Admin", FormMethod.Post))
+{
+    <div class="form-group">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>@Html.TextBoxFor(m=>m.name , new { @class = "form-control" })</th>
+                </tr>
+                <tr>
+                    <th>Surname</th>
+                    <th> @Html.TextBoxFor(m => m.surname, new { @class = "form-control" })</th>
+                </tr>
+            <tr>
+                <th>E-mail</th>
+
+                <th>@Html.TextBoxFor(m => m.email, new { @class = "form-control" })</th>
+            </tr>
+            <tr>
+                <th>Phone</th>
+
+                <th>@Html.TextBoxFor(m => m.phone, new { @class = "form-control" })</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    @Html.HiddenFor(m => m.id)
+    <button type="submit" class="btn btn-success">Save</button>
+}

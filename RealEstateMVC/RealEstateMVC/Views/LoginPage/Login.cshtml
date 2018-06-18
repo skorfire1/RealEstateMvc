@@ -1,0 +1,39 @@
+﻿@model RealEstateMVC.Models.User
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/css/loginlayout.css" rel="stylesheet" />
+</head>
+<body>
+
+<h2 style="text-align: center;"><img src="/Content/images/login.png"></h2>
+
+<form action="login" method="post">
+    <div class="imgcontainer">
+        <img src="/Content/images/superhero.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+        <label for="usermane"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="username" required>
+
+        <label for="password"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+
+        <button type="submit">Login</button>
+
+
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me<br>
+        </label>
+       <p style="text-align: center;"> @ViewBag.message</p>
+    </div>
+
+  
+</form>
+
+</body>
+</html>
